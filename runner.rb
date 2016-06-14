@@ -1,3 +1,3 @@
-require './app/bitmap_editor'
+Dir[Pathname.pwd.join('app/**/*.rb')].each { |f| require f }
 
-BitmapEditor.new.run
+BitmapEditor::Game.new.run
