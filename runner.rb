@@ -1,3 +1,3 @@
-Dir[Pathname.pwd.join('app/**/*.rb')].each { |f| require f }
+Dir[Dir.pwd.concat('/app/**/*.rb')].each { |f| require f }
 
-BitmapEditor::Game.new.run
+BitmapEditor::Editor.new.run
