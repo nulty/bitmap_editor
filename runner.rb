@@ -1,3 +1,5 @@
-Dir[Dir.pwd.concat('/app/**/*.rb')].each { |f| require f }
+require 'pry'
+require_relative 'app/bitmap_editor'
 
+require 'editor'
 BitmapEditor::Editor.new.run

@@ -1,5 +1,5 @@
 module BitmapEditor
-  require_relative 'command'
+  require 'command'
   class Editor
     def run
       puts 'type ? for help'

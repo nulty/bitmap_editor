@@ -1,6 +1,5 @@
 require 'spec_helper'
-
-require_relative '../../app/editor'
+require 'editor'
 
 RSpec.describe BitmapEditor::Editor do
   describe '#run' do

@@ -6,6 +6,8 @@ module BitmapEditor
       function = command.split.shift
 
       case function
+      when 'I'
+        show_help
       when '?'
         show_help
       when 'X'

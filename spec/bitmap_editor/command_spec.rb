@@ -1,6 +1,5 @@
 require 'spec_helper'
-
-require_relative '../../app/command'
+require 'command'
 
 RSpec.describe BitmapEditor::Command do
   describe '#run' do
