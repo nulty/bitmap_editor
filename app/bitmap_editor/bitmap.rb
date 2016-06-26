@@ -4,7 +4,7 @@ module BitmapEditor
 
     def initialize(height, width)
       @height = height
-      @width = width
+      @width  = width
       validate_args
       @grid = new_grid
     end
@@ -18,11 +18,17 @@ module BitmapEditor
     end
 
     def validate_args
-      raise ArgumentError, 'dimensions should be between 1 and 250' unless valid_dimensions?
+      raise BitmapArgumentError unless valid_dimensions?
     end
 
     def valid_dimensions?
       VALID_DIMENSIONS.include?(height) && VALID_DIMENSIONS.include?(width)
+    end
+  end
+
+  class BitmapArgumentError < StandardError
+    def initialize(msg = 'dimensions should be integers between 1 and 250')
+      super(msg)
     end
   end
 end
