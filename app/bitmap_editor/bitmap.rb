@@ -6,14 +6,14 @@ module BitmapEditor
       @height = height
       @width = width
       validate_args
-      @grid = new_grid(height, width)
+      @grid = new_grid
     end
 
     private
 
     attr_reader :width, :height
 
-    def new_grid(height, width)
+    def new_grid
       Array.new(width) { Array.new(height, 'O') }
     end
 
