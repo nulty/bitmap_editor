@@ -2,12 +2,14 @@ module BitmapEditor
   class Command
     attr_accessor :exit
 
-    def run(command)
-      function = command.split.shift
+    def run(input, editor = nil)
+      input    = input.split
+      function = input.shift
+      args     = input
 
       case function
       when 'I'
-        show_help
+        editor.new_bitmap(*args)
       when '?'
         show_help
       when 'X'

@@ -17,4 +17,10 @@ RSpec.describe BitmapEditor::Editor do
       end
     end
   end
+
+  describe '#new_bitmap' do
+    it 'creates a new Bitmap' do
+      expect(subject.new_bitmap(5, 5)).to be_a(BitmapEditor::Bitmap)
+    end
+  end
 end

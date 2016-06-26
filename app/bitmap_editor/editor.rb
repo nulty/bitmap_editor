@@ -1,6 +1,10 @@
 module BitmapEditor
   require 'command'
+  require 'bitmap'
+
   class Editor
+    attr_accessor :bitmap
+
     def run
       puts 'type ? for help'
 
@@ -12,7 +16,11 @@ module BitmapEditor
     end
 
     def command(input)
-      Command.new.run(input)
+      Command.new.run(input, self)
+    end
+
+    def new_bitmap(height, width)
+      @bitmap = ::BitmapEditor::Bitmap.new(height, width)
     end
 
     def gets_input
