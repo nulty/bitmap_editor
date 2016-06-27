@@ -45,6 +45,12 @@ RSpec.describe BitmapEditor::Bitmap do
         bitmap.print
       end
     end
+
+    context 'paint a pixel off canvas' do
+      it 'paints a pixel' do
+        expect { bitmap.paint_pixel(3, 5, 'A') }.to raise_error(BitmapEditor::PaintOffImageError)
+      end
+    end
   end
 
   describe '#paint_vertical' do
@@ -74,6 +80,14 @@ RSpec.describe BitmapEditor::Bitmap do
         bitmap.print
       end
     end
+
+    context 'paint a pixel off canvas' do
+      it 'paints a pixel' do
+        expect do
+          bitmap.paint_vertical(5, 1, 3, 'A')
+        end.to raise_error(BitmapEditor::PaintOffImageError)
+      end
+    end
   end
 
   describe '#paint_horizontal' do
@@ -101,6 +115,14 @@ RSpec.describe BitmapEditor::Bitmap do
         bitmap.paint_horizontal(1, 3, 4, 'A')
 
         bitmap.print
+      end
+    end
+
+    context 'paint a pixel off canvas' do
+      it 'paints a pixel' do
+        expect do
+          bitmap.paint_horizontal(1, 5, 4, 'A')
+        end.to raise_error(BitmapEditor::PaintOffImageError)
       end
     end
   end

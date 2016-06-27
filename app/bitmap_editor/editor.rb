@@ -12,13 +12,7 @@ module BitmapEditor
         print '> '
         input = gets_input
 
-        begin
-          break if command(input).exit?
-        rescue BitmapEditor::BitmapArgumentError, BitmapEditor::NoBitmapExistsError, ArgumentError => e
-          puts e.message
-        rescue NoMethodError
-          continue
-        end
+        break if command(input).exit?
       end
     end
 

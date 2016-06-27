@@ -7,27 +7,34 @@ module BitmapEditor
       function = input.shift
       args     = input
 
-      case function
-      when 'I'
-        editor.new_bitmap(*args)
-      when 'C'
-        editor.clean_bitmap
-      when 'S'
-        editor.print_bitmap
-      when 'L'
-        editor.paint_pixel(*args)
-      when 'V'
-        editor.paint_vertical(*args)
-      when 'H'
-        editor.paint_horizontal(*args)
-      when '?'
-        show_help
-      when 'X'
-        exit_console
-      else
-        puts 'unrecognised command :('
+      begin
+        case function
+        when 'I'
+          editor.new_bitmap(*args)
+        when 'C'
+          editor.clean_bitmap
+        when 'S'
+          editor.print_bitmap
+        when 'L'
+          editor.paint_pixel(*args)
+        when 'V'
+          editor.paint_vertical(*args)
+        when 'H'
+          editor.paint_horizontal(*args)
+        when '?'
+          show_help
+        when 'X'
+          exit_console
+        else
+          puts 'unrecognised command :('
+        end
+      rescue BitmapEditor::BitmapArgumentError,
+             ArgumentError,
+             BitmapEditor::NoBitmapExistsError,
+             BitmapEditor::PaintOffImageError => e
+        puts e.message
       end
-      self
+      return self
     end
 
     def exit?
