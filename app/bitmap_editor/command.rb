@@ -18,6 +18,8 @@ module BitmapEditor
         editor.paint_pixel(*args)
       when 'V'
         editor.paint_vertical(*args)
+      when 'H'
+        editor.paint_horizontal(*args)
       when '?'
         show_help
       when 'X'

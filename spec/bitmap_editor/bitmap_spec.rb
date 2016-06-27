@@ -76,6 +76,30 @@ RSpec.describe BitmapEditor::Bitmap do
     end
   end
 
+  describe '#paint_horizontal' do
+    require 'printers/console_printer'
+    let(:printer) { BitmapEditor::ConsolePrinter }
+    let!(:bitmap) { described_class.new(4, 4) }
+
+    context 'paint a column range of pixels' do
+      it 'prints expected bitmap' do
+        expect($stdout).to receive(:puts).with('OOOO').once.ordered
+        expect($stdout).to receive(:puts).with('OAAO').once
+        expect($stdout).to receive(:puts).with('OOOO').twice.ordered
+
+        bitmap.paint_horizontal(2, 3, 2, 'A')
+
+        bitmap.print
+      end
+    end
+
+    context 'paint a different column range of pixel' do
+      it 'prints expected bitmap' do
+        expect($stdout).to receive(:puts).with('OOOO').exactly(3).times.ordered
+        expect($stdout).to receive(:puts).with('AAAO').once.ordered
+
+        bitmap.paint_horizontal(1, 3, 4, 'A')
+
         bitmap.print
       end
     end

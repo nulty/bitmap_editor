@@ -47,6 +47,12 @@ module BitmapEditor
       bitmap.paint_vertical(col, row_start, row_end, colour)
     end
 
+    def paint_horizontal(col_start, col_end, row, colour)
+      raise NoBitmapExistsError if bitmap.nil?
+
+      bitmap.paint_horizontal(col_start, col_end, row, colour)
+    end
+
     def gets_input
       gets.chomp
     end

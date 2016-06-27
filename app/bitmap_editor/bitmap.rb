@@ -31,6 +31,16 @@ module BitmapEditor
       end
     end
 
+    def paint_horizontal(col_start, col_end, row, colour)
+      col_start = col_start.to_i
+      col_end   = col_end.to_i
+      row       = row.to_i
+
+      (col_start..col_end).each do |col_pixel|
+        paint_pixel(row, col_pixel, colour)
+      end
+    end
+
     private
 
     def new_grid

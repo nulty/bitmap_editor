@@ -114,7 +114,25 @@ RSpec.describe BitmapEditor::Editor do
       end
     end
   end
-          subject.print_bitmap
+
+  describe '#paint_horizontal' do
+    let(:args) { %w(3 4 5 A) }
+
+    context 'bitmap exists' do
+      let(:bitmap) { double }
+
+      it 'calls print on the bitmap' do
+        allow(subject).to receive(:bitmap) { bitmap }
+        expect(bitmap).to receive(:paint_horizontal).with(*args)
+
+        subject.paint_horizontal(*args)
+      end
+    end
+
+    context 'no bitmap exists' do
+      it 'raises NoBitmapExistsError' do
+        expect do
+          subject.paint_horizontal(*args)
         end.to raise_error(BitmapEditor::NoBitmapExistsError)
       end
     end

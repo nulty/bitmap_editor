@@ -72,6 +72,16 @@ RSpec.describe BitmapEditor::Command do
       end
     end
 
+    context 'H - paint pixel range vertically' do
+      let(:input) { 'H 2 2 4 A' }
+      let(:args) { %w(2 2 4 A) }
+
+      it 'paints a bitmap pixel' do
+        expect(editor).to receive(:paint_horizontal).with(*args)
+        subject.run(input, editor)
+      end
+    end
+
     context 'unrecognised command' do
       it 'prints the help command' do
         expect(STDOUT).to receive(:puts).with('unrecognised command :(')
