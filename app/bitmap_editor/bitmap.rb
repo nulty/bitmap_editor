@@ -15,6 +15,12 @@ module BitmapEditor
       printer.print @grid
     end
 
+    def paint_pixel(col, row, colour)
+      col = col.to_i - 1
+      row = row.to_i - 1
+      @grid[col][row] = colour.upcase
+    end
+
     private
 
     def new_grid

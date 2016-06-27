@@ -17,4 +17,33 @@ RSpec.describe BitmapEditor::Bitmap do
       end
     end
   end
+
+  describe '#paint_pixel' do
+    require 'printers/console_printer'
+    let(:printer) { BitmapEditor::ConsolePrinter }
+    let!(:bitmap) { described_class.new(4, 4) }
+
+    context 'paint a pixel' do
+      it 'paints a pixel' do
+        expect($stdout).to receive(:puts).with('AOOO').once.ordered
+        expect($stdout).to receive(:puts).with('OOOO').exactly(3).times.ordered
+
+        bitmap.paint_pixel(1, 1, 'A')
+
+        bitmap.print
+      end
+    end
+
+    context 'paint a different pixel' do
+      it 'paints a pixel' do
+        expect($stdout).to receive(:puts).with('OOOO').exactly(2).times.ordered
+        expect($stdout).to receive(:puts).with('OOAO').once.ordered
+        expect($stdout).to receive(:puts).with('OOOO').once.ordered
+
+        bitmap.paint_pixel(3, 3, 'A')
+
+        bitmap.print
+      end
+    end
+  end
 end
