@@ -23,8 +23,20 @@ module BitmapEditor
       @bitmap = ::BitmapEditor::Bitmap.new(height, width)
     end
 
+    def clean_bitmap
+      raise NoBitmapExistsError if bitmap.nil?
+
+      @bitmap = new_bitmap(bitmap.height, bitmap.width)
+    end
+
     def gets_input
       gets.chomp
+    end
+  end
+
+  class NoBitmapExistsError < StandardError
+    def initialize(msg = 'Try creating a bitmap before clearing one')
+      super(msg)
     end
   end
 end

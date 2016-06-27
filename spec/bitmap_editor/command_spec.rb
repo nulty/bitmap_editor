@@ -34,6 +34,15 @@ RSpec.describe BitmapEditor::Command do
       end
     end
 
+    context 'C - clear Bitmap' do
+      let(:input) { 'C' }
+
+      it 'creates a new bitmap in the Editor' do
+        expect(editor).to receive(:clean_bitmap)
+        subject.run('C', editor)
+      end
+    end
+
     context 'unrecognised command' do
       it 'prints the help command' do
         expect(STDOUT).to receive(:puts).with('unrecognised command :(')

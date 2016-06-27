@@ -2,16 +2,16 @@ module BitmapEditor
   class Bitmap
     VALID_DIMENSIONS = (1..250)
 
+    attr_reader :width, :height
+
     def initialize(height, width)
-      @height = height
-      @width  = width
+      @height = height.to_i
+      @width  = width.to_i
       validate_args
       @grid = new_grid
     end
 
     private
-
-    attr_reader :width, :height
 
     def new_grid
       Array.new(width) { Array.new(height, 'O') }

@@ -10,6 +10,8 @@ module BitmapEditor
       case function
       when 'I'
         editor.new_bitmap(*args)
+      when 'C'
+        editor.clean_bitmap
       when '?'
         show_help
       when 'X'
