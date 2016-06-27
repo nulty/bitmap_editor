@@ -46,4 +46,38 @@ RSpec.describe BitmapEditor::Bitmap do
       end
     end
   end
+
+  describe '#paint_vertical' do
+    require 'printers/console_printer'
+    let(:printer) { BitmapEditor::ConsolePrinter }
+    let!(:bitmap) { described_class.new(4, 4) }
+
+    context 'paint a column range of pixels' do
+      it 'prints expected bitmap' do
+        expect($stdout).to receive(:puts).with('OOOO').once.ordered
+        expect($stdout).to receive(:puts).with('OAOO').exactly(2).times.ordered
+        expect($stdout).to receive(:puts).with('OOOO').once.ordered
+
+        bitmap.paint_vertical(2, 2, 3, 'A')
+
+        bitmap.print
+      end
+    end
+
+    context 'paint a different column range of pixel' do
+      it 'prints expected bitmap' do
+        expect($stdout).to receive(:puts).with('OOOA').exactly(3).times.ordered
+        expect($stdout).to receive(:puts).with('OOOO').once.ordered
+
+        bitmap.paint_vertical(4, 1, 3, 'A')
+
+        bitmap.print
+      end
+    end
+  end
+
+        bitmap.print
+      end
+    end
+  end
 end

@@ -21,6 +21,16 @@ module BitmapEditor
       @grid[col][row] = colour.upcase
     end
 
+    def paint_vertical(col, row_start, row_end, colour)
+      row_start = row_start.to_i
+      row_end   = row_end.to_i
+      col       = col.to_i
+
+      (row_start..row_end).each do |row_pixel|
+        paint_pixel(row_pixel, col, colour)
+      end
+    end
+
     private
 
     def new_grid

@@ -16,6 +16,8 @@ module BitmapEditor
         editor.print_bitmap
       when 'L'
         editor.paint_pixel(*args)
+      when 'V'
+        editor.paint_vertical(*args)
       when '?'
         show_help
       when 'X'
