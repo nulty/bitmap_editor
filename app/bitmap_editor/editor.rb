@@ -3,7 +3,7 @@ module BitmapEditor
   require 'bitmap'
 
   class Editor
-    attr_accessor :bitmap
+    attr_reader :bitmap
 
     def run
       puts 'type ? for help'
@@ -27,6 +27,12 @@ module BitmapEditor
       raise NoBitmapExistsError if bitmap.nil?
 
       @bitmap = new_bitmap(bitmap.height, bitmap.width)
+    end
+
+    def print_bitmap
+      raise NoBitmapExistsError if bitmap.nil?
+
+      bitmap.print
     end
 
     def gets_input

@@ -11,6 +11,10 @@ module BitmapEditor
       @grid = new_grid
     end
 
+    def print(printer = ConsolePrinter)
+      printer.print @grid
+    end
+
     private
 
     def new_grid

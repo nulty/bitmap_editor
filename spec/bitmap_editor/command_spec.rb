@@ -43,6 +43,15 @@ RSpec.describe BitmapEditor::Command do
       end
     end
 
+    context 'S - show Bitmap' do
+      let(:input) { 'S' }
+
+      it 'prints the bitmap' do
+        expect(editor).to receive(:print_bitmap)
+        subject.run('S', editor)
+      end
+    end
+
     context 'unrecognised command' do
       it 'prints the help command' do
         expect(STDOUT).to receive(:puts).with('unrecognised command :(')

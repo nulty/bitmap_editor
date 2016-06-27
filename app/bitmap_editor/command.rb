@@ -12,6 +12,8 @@ module BitmapEditor
         editor.new_bitmap(*args)
       when 'C'
         editor.clean_bitmap
+      when 'S'
+        editor.print_bitmap
       when '?'
         show_help
       when 'X'
