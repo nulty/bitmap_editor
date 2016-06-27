@@ -30,7 +30,7 @@ RSpec.describe BitmapEditor::Command do
 
       it 'creates a new bitmap in the Editor' do
         expect(editor).to receive(:new_bitmap).with(*args)
-        subject.run('I 5 6', editor)
+        subject.run(input, editor)
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe BitmapEditor::Command do
 
       it 'creates a new bitmap in the Editor' do
         expect(editor).to receive(:clean_bitmap)
-        subject.run('C', editor)
+        subject.run(input, editor)
       end
     end
 
@@ -48,7 +48,17 @@ RSpec.describe BitmapEditor::Command do
 
       it 'prints the bitmap' do
         expect(editor).to receive(:print_bitmap)
-        subject.run('S', editor)
+        subject.run(input, editor)
+      end
+    end
+
+    context 'L - paint Bitmap pixel' do
+      let(:input) { 'L 2 3 A' }
+      let(:args) { %w(2 3 A) }
+
+      it 'paints a bitmap pixel' do
+        expect(editor).to receive(:paint_pixel).with(*args)
+        subject.run(input, editor)
       end
     end
 

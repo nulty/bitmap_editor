@@ -69,4 +69,26 @@ RSpec.describe BitmapEditor::Editor do
       end
     end
   end
+
+  describe '#paint_pixel' do
+    context 'bitmap exists' do
+      let(:bitmap) { double }
+      let(:args) { %w(3 3 A) }
+
+      it 'calls print on the bitmap' do
+        allow(subject).to receive(:bitmap) { bitmap }
+        expect(bitmap).to receive(:paint_pixel).with(*args)
+
+        subject.paint_pixel(*args)
+      end
+    end
+
+    context 'no bitmap exists' do
+      it 'raises NoBitmapExistsError' do
+        expect do
+          subject.print_bitmap
+        end.to raise_error(BitmapEditor::NoBitmapExistsError)
+      end
+    end
+  end
 end

@@ -35,6 +35,12 @@ module BitmapEditor
       bitmap.print
     end
 
+    def paint_pixel(col, row, colour)
+      raise NoBitmapExistsError if bitmap.nil?
+
+      bitmap.paint_pixel(col, row, colour)
+    end
+
     def gets_input
       gets.chomp
     end

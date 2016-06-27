@@ -14,6 +14,8 @@ module BitmapEditor
         editor.clean_bitmap
       when 'S'
         editor.print_bitmap
+      when 'L'
+        editor.paint_pixel(*args)
       when '?'
         show_help
       when 'X'
