@@ -59,6 +59,11 @@ module BitmapEditor
     end
 
     def validate_draw(vertical_range, horizontal_range)
+      if vertical_range.first > vertical_range.last ||
+         horizontal_range.first > horizontal_range.last
+        raise BitmapArgumentError, 'arguments should be ordered correctly'
+      end
+
       return unless vertical_range.max   > height ||
                     horizontal_range.max > width ||
                     vertical_range.min   < 1 ||

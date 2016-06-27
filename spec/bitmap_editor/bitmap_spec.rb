@@ -81,6 +81,14 @@ RSpec.describe BitmapEditor::Bitmap do
       end
     end
 
+    context 'vertical low range pixel is higher than high range' do
+      it 'paints a pixel' do
+        expect do
+          bitmap.paint_vertical(5, 3, 1, 'A')
+        end.to raise_error(BitmapEditor::BitmapArgumentError)
+      end
+    end
+
     context 'paint a pixel off canvas' do
       it 'paints a pixel' do
         expect do
@@ -115,6 +123,14 @@ RSpec.describe BitmapEditor::Bitmap do
         bitmap.paint_horizontal(1, 3, 4, 'A')
 
         bitmap.print
+      end
+    end
+
+    context 'horizontal low range pixel is higher than high range' do
+      it 'paints a pixel' do
+        expect do
+          bitmap.paint_horizontal(5, 1, 3, 'A')
+        end.to raise_error(BitmapEditor::BitmapArgumentError)
       end
     end
 
