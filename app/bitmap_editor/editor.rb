@@ -11,7 +11,14 @@ module BitmapEditor
       loop do
         print '> '
         input = gets_input
-        break if command(input).exit?
+
+        begin
+          break if command(input).exit?
+        rescue BitmapEditor::BitmapArgumentError, BitmapEditor::NoBitmapExistsError, ArgumentError => e
+          puts e.message
+        rescue NoMethodError
+          continue
+        end
       end
     end
 
@@ -59,7 +66,7 @@ module BitmapEditor
   end
 
   class NoBitmapExistsError < StandardError
-    def initialize(msg = 'Try creating a bitmap before clearing one')
+    def initialize(msg = 'Try creating a bitmap first')
       super(msg)
     end
   end
