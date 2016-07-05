@@ -82,6 +82,16 @@ RSpec.describe BitmapEditor::Command do
       end
     end
 
+    context 'F - flood_fill' do
+      let(:input) { 'F 2 2 C' }
+      let(:args) { %w(2 2 C) }
+
+      it 'calls flood_fill method on editor' do
+        expect(editor).to receive(:flood_fill).with(*args)
+        subject.run(input, editor)
+      end
+    end
+
     context 'unrecognised command' do
       it 'prints the help command' do
         expect(STDOUT).to receive(:puts).with('unrecognised command :(')

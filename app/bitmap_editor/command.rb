@@ -21,6 +21,8 @@ module BitmapEditor
           editor.paint_vertical(*args)
         when 'H'
           editor.paint_horizontal(*args)
+        when 'F'
+          editor.flood_fill(*args)
         when '?'
           show_help
         when 'X'
