@@ -142,4 +142,50 @@ RSpec.describe BitmapEditor::Bitmap do
       end
     end
   end
+
+  describe '#flood_fill' do
+    require 'printers/console_printer'
+    let(:printer) { BitmapEditor::ConsolePrinter }
+    let!(:bitmap) { described_class.new(8, 8) }
+
+    # bitmap looks like this:
+    #
+    #  00000000
+    #  00000000
+    #  00-00000
+    #  00---000
+    #  000-0000
+    #  0---0000
+    #  0-000000
+    #  00000000
+    #  00000000
+    # => Starting coordinate is 3, 2
+
+    # 00000000
+    # 00000000
+    # 00-00000
+    # 00---000
+    # 000-0000
+    # 0---0000
+    # 0-000000
+    # 00000000
+    # 00000000
+
+    context '' do
+      # let(:coords) do
+      #   [
+      #     [3,2]
+      #     [3,3]
+      #     [3,2]
+      #     [3,2]
+      #   ]
+      # end
+      it 'prints expected bitmap' do
+        expect($stdout).to receive(:puts).with('OOOOOOOO').exactly(8).times.ordered
+        bitmap.flood_fill(3, 2, '0')
+
+        bitmap.print
+      end
+    end
+  end
 end

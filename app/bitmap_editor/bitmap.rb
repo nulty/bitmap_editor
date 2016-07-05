@@ -48,7 +48,45 @@ module BitmapEditor
       end
     end
 
+    def flood_fill(col, row, new_colour)
+      col = col.to_i
+      row = row.to_i
+
+      @targets = []
+
+      old_colour = @grid[col][row]
+
+      return if old_colour == new_colour
+      paint_pixel(col, row, new_colour)
+
+      # this adds squares next to the current square that 
+      # should be coloured to a set of targets
+      search(col, row, old_colour)
+
+      # now we have a list of targets we can 
+      @targets.each do |target|
+        paint_pixel(col, row, new_colour)
+        search(col, row, old_colour)
+      end
+    end
+
     private
+
+    def search(col, row, old_colour)
+      # north
+      if @grid[col-1][row] == old_colour
+        @targets << [[col-1][row]]
+      # east
+      elsif @grid[col-1][row+1] == old_colour
+        @targets << [[col-1][row+1]]
+      # south
+      elsif @grid[col+1][row] == old_colour
+        @targets << [[col+1][row]]
+      # west
+      elsif @grid[col][row-1] == old_colour
+        @targets << [[col][row-1]]
+      end
+    end
 
     def new_grid
       Array.new(width) { Array.new(height, 'O') }
