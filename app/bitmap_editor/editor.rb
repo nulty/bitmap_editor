@@ -54,6 +54,12 @@ module BitmapEditor
       bitmap.paint_horizontal(col_start, col_end, row, colour)
     end
 
+    def flood_fill(col, row, colour)
+      raise NoBitmapExistsError if bitmap.nil?
+
+      bitmap.flood_fill(col, row, colour)
+    end
+
     def gets_input
       gets.chomp
     end

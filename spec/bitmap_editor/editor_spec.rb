@@ -128,11 +128,26 @@ RSpec.describe BitmapEditor::Editor do
         subject.paint_horizontal(*args)
       end
     end
+  end
+
+  describe '#flood_fill' do
+    let(:args) { %w(2 2 C) }
+
+    context 'bitmap exists' do
+      let(:bitmap) { double }
+
+      it 'calls flood_fill on the bitmap' do
+        allow(subject).to receive(:bitmap) { bitmap }
+        expect(bitmap).to receive(:flood_fill).with(*args)
+
+        subject.flood_fill(*args)
+      end
+    end
 
     context 'no bitmap exists' do
       it 'raises NoBitmapExistsError' do
         expect do
-          subject.paint_horizontal(*args)
+          subject.flood_fill(*args)
         end.to raise_error(BitmapEditor::NoBitmapExistsError)
       end
     end
